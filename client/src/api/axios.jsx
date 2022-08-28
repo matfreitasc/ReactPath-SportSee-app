@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from 'axios'
 
-const BASEURL = 'http://localhost:3000';
+const baseUrl = 'http://localhost:3000/user/'
 
 export default axios.create({
-  baseURL: { BASEURL },
+  baseURL: baseUrl,
   headers: {
     'Content-Type': 'application/json',
   },
-});
+})
