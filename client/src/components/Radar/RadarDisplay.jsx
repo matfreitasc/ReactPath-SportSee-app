@@ -8,34 +8,24 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
-const data = [
-  {
-    value: 'Cardio',
-    kind: 1,
-  },
-  {
-    value: 'Energy',
-    kind: 2,
-  },
-  {
-    value: 'Endurance',
-    kind: 3,
-  },
-  {
-    value: 'Strength',
-    kind: 4,
-  },
-  {
-    value: 'Speed',
-    kind: 5,
-  },
-  {
-    value: 'Intenrisy',
-    kind: 6,
-  },
-]
+function RadarDisplay(props) {
+  const kind = props.userPerformance.kind
+  const PropsData = props.userPerformance
 
-function RadarDisplay() {
+  const newData = {
+    value: PropsData.data,
+    kind: PropsData.kind,
+  }
+
+  const newDataArray = newData.value.map((item) => {
+    return {
+      value: item.value,
+      kind: kind[item.kind],
+    }
+  })
+
+  const data = newDataArray
+
   const startAngle = 210
   return (
     <div
@@ -55,7 +45,7 @@ function RadarDisplay() {
             strokeWidth={4}
           />
           <PolarAngleAxis
-            dataKey="value"
+            dataKey="kind"
             tick={{ fill: 'white', fontSize: 12, fontWeight: 500 }}
             tickSize={14}
             tickLine={false}
@@ -63,7 +53,7 @@ function RadarDisplay() {
           />
           <Radar
             name="performance"
-            dataKey="kind"
+            dataKey="value"
             stroke="#FF0101"
             fill="#FF0101"
             fillOpacity={0.7}

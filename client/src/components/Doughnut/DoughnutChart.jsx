@@ -6,27 +6,8 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
-function DoughnutChart() {
-  const data = {
-    data: [
-      {
-        id: 12,
-        userInfos: {
-          firstName: 'Karl',
-          lastName: 'Dovineau',
-          age: 31,
-        },
-        todayScore: 0.12,
-        keyData: {
-          calorieCount: 1930,
-          proteinCount: 155,
-          carbohydrateCount: 290,
-          lipidCount: 50,
-        },
-      },
-    ],
-  }
-  const score = [{ value: data.data[0].todayScore * 100, fill: '#FF0000' }]
+function DoughnutChart(props) {
+  const score = [{ value: props.todayScore * 100, fill: '#FF0000' }]
 
   return (
     <div className="relative flex h-[263px]  w-[263px] content-center items-center justify-center rounded-xl bg-[#FBFBFB] shadow-md">
@@ -43,7 +24,7 @@ function DoughnutChart() {
           goal
         </p>
       </div>
-      <ResponsiveContainer width={258} height={263}>
+      <ResponsiveContainer width="100%" height="100%">
         <RadialBarChart
           data={score}
           innerRadius={80}

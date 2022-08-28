@@ -10,44 +10,8 @@ import {
   Legend,
 } from 'recharts'
 
-function DailyActiveChart() {
-  const data = [
-    {
-      day: '2020-07-01',
-      kilogram: 80,
-      calories: 240,
-    },
-    {
-      day: '2020-07-02',
-      kilogram: 80,
-      calories: 220,
-    },
-    {
-      day: '2020-07-03',
-      kilogram: 81,
-      calories: 280,
-    },
-    {
-      day: '2020-07-04',
-      kilogram: 81,
-      calories: 290,
-    },
-    {
-      day: '2020-07-05',
-      kilogram: 80,
-      calories: 160,
-    },
-    {
-      day: '2020-07-06',
-      kilogram: 78,
-      calories: 162,
-    },
-    {
-      day: '2020-07-07',
-      kilogram: 76,
-      calories: 390,
-    },
-  ]
+function DailyActiveChart(props) {
+  const data = props.sessions
   const modifiedData = data.map((item, index) => {
     const newItem = { ...item }
 
@@ -57,6 +21,9 @@ function DailyActiveChart() {
 
   return (
     <div className="relative h-[340px] w-full rounded-xl bg-[#FBFBFB] shadow-md">
+      <h1 className="color-[#20253A] absolute left-[32px] top-[24px] text-base font-medium">
+        Daily Active
+      </h1>
       <ResponsiveContainer width="95%" height="100%">
         <BarChart
           data={modifiedData}
@@ -107,7 +74,13 @@ function DailyActiveChart() {
             tickMargin={20}
           />
 
-          <XAxis dataKey="index" />
+          <XAxis
+            dataKey="index"
+            axisLine={false}
+            tickLine={false}
+            tickMargin={5}
+            stroke="#9B9EAC"
+          />
           <Tooltip
             content={<CustomTooltip />}
             labelStyle={{ display: 'none' }}
@@ -131,7 +104,6 @@ function DailyActiveChart() {
 }
 
 function CustomTooltip({ payload, active }) {
-  console.log(payload)
   if (active) {
     return (
       <div
