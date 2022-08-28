@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  height: 100vh;
+  overflow-y: hidden;
+}
+*,
+*::before,
+*::after {
+  font-family: Roboto, sans-serif;
+}
+.leaflet-popup-tip-container {
+  display: none;
+}
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+.recharts-legend-item,
+.legend-item-0 {
+  padding-right: 20px !important;
+}
