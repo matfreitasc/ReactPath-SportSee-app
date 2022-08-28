@@ -9,6 +9,9 @@ const port = process.env.PORT || 3000;
 
 app.use(router);
 
-app.listen(port, () =>
-	console.log(`Magic happens on port ${port}`)
+app.listen(
+	port,
+	() => console.log(`Magic happens on port ${port}`)
+
+	// something is happening on port 3000
 );
