@@ -7,7 +7,7 @@ import Protein from '../assets/protein-icon.svg'
 import Calories from '../assets/calories-icon.svg'
 import Carbs from '../assets/carbs-icon.svg'
 import Lipids from '../assets/fat-icon.svg'
-
+import PropTypes from 'prop-types'
 import {
   defaultUserData,
   defaultUserActivity,
@@ -104,6 +104,16 @@ function Home() {
       </div>
     </div>
   )
+}
+
+Home.propTypes = {
+  data: PropTypes.object,
+  userInfos: PropTypes.object,
+  todayScore: PropTypes.object,
+  keyData: PropTypes.object,
+  sessions: PropTypes.object,
+  averageSession: PropTypes.object,
+  userPerformance: PropTypes.object,
 }
 
 export default Home

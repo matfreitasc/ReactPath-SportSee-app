@@ -1,4 +1,5 @@
 import React from 'react'
+import Proptypes from 'prop-types'
 import './radar.css'
 import {
   Radar,
@@ -63,4 +64,13 @@ function RadarDisplay(props) {
     </div>
   )
 }
+
+RadarDisplay.propTypes = {
+  id: Proptypes.string,
+  keyData: Proptypes.object,
+  userInfos: Proptypes.object,
+  score: Proptypes.number,
+  todayScore: Proptypes.number,
+}
+
 export default RadarDisplay

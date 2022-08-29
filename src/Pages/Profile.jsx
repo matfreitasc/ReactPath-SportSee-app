@@ -35,13 +35,17 @@ function Profile() {
   })
 
   useEffect(() => {
+    const controller = new AbortController()
+
     const getUserData = async () => {
       setLoading(true)
       try {
         const response = await axios.get(`${id}`)
         const activeRespobse = await axios.get(`${id}/activity`)
         const avrageResponse = await axios.get(`${id}/average-sessions`)
-        const performanceResponse = await axios.get(`${id}/performance`)
+        const performanceResponse = await axios.get(`${id}/performance`, {
+          signal: controller.signal,
+        })
         setUserData(response.data.data)
         setAvrageSess(avrageResponse.data.data)
         setUserActivity(activeRespobse.data.data)
@@ -54,12 +58,12 @@ function Profile() {
     }
 
     getUserData()
+    return () => controller.abort()
   }, [id])
 
   const data = userData
   const userInfos = data.userInfos
   const keyData = data.keyData
-  console.log(data)
   const todayScore = data.todayScore || data.score
 
   const sessions = userActivity.sessions
@@ -69,7 +73,7 @@ function Profile() {
   return (
     <Fragment>
       {loading && (
-        <div className="fixed z-50 flex h-screen w-screen flex-col items-center justify-center bg-white text-center">
+        <div className="absolute z-50 flex h-screen w-screen flex-col items-center justify-center bg-white text-center">
           <svg className="... mr-3 h-20 w-20 animate-spin" viewBox="0 0 24 24">
             <svg
               fill="none"
@@ -188,22 +192,22 @@ function Profile() {
 }
 
 Profile.propTypes = {
-  id: PropTypes.string.isRequired,
-  userInfos: PropTypes.object.isRequired,
-  userActivity: PropTypes.object.isRequired,
-  userPerformance: PropTypes.object.isRequired,
-  keyData: PropTypes.object.isRequired,
-  todayScore: PropTypes.object.isRequired,
-  sessions: PropTypes.object.isRequired,
-  averageSession: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired,
-  getUserInfos: PropTypes.func.isRequired,
-  getUserActivity: PropTypes.func.isRequired,
-  getUserPerformance: PropTypes.func.isRequired,
-  getKeyData: PropTypes.func.isRequired,
-  getTodayScore: PropTypes.func.isRequired,
-  getSessions: PropTypes.func.isRequired,
-  getAverageSession: PropTypes.func.isRequired,
+  id: PropTypes.string,
+  userInfos: PropTypes.object,
+  userActivity: PropTypes.object,
+  userPerformance: PropTypes.object,
+  keyData: PropTypes.object,
+  todayScore: PropTypes.object,
+  sessions: PropTypes.object,
+  averageSession: PropTypes.object,
+  loading: PropTypes.bool,
+  getUserInfos: PropTypes.func,
+  getUserActivity: PropTypes.func,
+  getUserPerformance: PropTypes.func,
+  getKeyData: PropTypes.func,
+  getTodayScore: PropTypes.func,
+  getSessions: PropTypes.func,
+  getAverageSession: PropTypes.func,
 }
 
 export default Profile

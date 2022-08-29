@@ -5,6 +5,7 @@ import {
   PolarAngleAxis,
   ResponsiveContainer,
 } from 'recharts'
+import PropTypes from 'prop-types'
 
 function DoughnutChart(props) {
   const score = [{ value: props.todayScore * 100, fill: '#FF0000' }]
@@ -51,6 +52,10 @@ function DoughnutChart(props) {
       </ResponsiveContainer>
     </div>
   )
+}
+
+DoughnutChart.propTypes = {
+  todayScore: PropTypes.number,
 }
 
 export default DoughnutChart

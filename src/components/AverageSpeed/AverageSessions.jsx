@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import {
   LineChart,
   CartesianGrid,
@@ -122,6 +123,23 @@ const CustomizedAxisTick = (props) => {
       </text>
     </g>
   )
+}
+
+AverageSessions.propTypes = {
+  averageSession: PropTypes.array,
+}
+CustomTooltip.propTypes = {
+  payload: PropTypes.array,
+  active: PropTypes.bool,
+}
+CustomCursor.propTypes = {
+  points: PropTypes.array,
+  width: PropTypes.number,
+}
+CustomizedAxisTick.propTypes = {
+  x: PropTypes.number,
+  y: PropTypes.number,
+  payload: PropTypes.object,
 }
 
 export default AverageSessions
