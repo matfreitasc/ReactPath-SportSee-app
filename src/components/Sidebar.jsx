@@ -1,7 +1,3 @@
-import Swimming from '../assets/swimming.svg'
-import Weight from '../assets/weight.svg'
-import Yoga from '../assets/yoga.svg'
-
 function Sidebar() {
   return (
     <section className="z-10 flex h-full w-28 flex-col flex-nowrap items-center justify-start gap-5 bg-black shadow-xl shadow-black">
