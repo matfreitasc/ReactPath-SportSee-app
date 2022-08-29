@@ -3,10 +3,6 @@ import RadarDisplay from '../components/Radar/RadarDisplay'
 import DoughnutChart from '../components/Doughnut/DoughnutChart'
 import DailyActiveChart from '../components/DailyActive/DailyActiveChart'
 import AverageSessions from '../components/AverageSpeed/AverageSessions'
-import Protein from '../assets/protein-icon.svg'
-import Calories from '../assets/calories-icon.svg'
-import Carbs from '../assets/carbs-icon.svg'
-import Lipids from '../assets/fat-icon.svg'
 
 import { useParams } from 'react-router-dom'
 import { Fragment, useEffect, useState } from 'react'
@@ -127,7 +123,7 @@ function Profile() {
                 <div className="flex h-32 w-64 flex-row items-center justify-start gap-[24px]  bg-[#FBFBFB] shadow-md ">
                   <div className="relative ml-[32px] h-[60px] w-[60px] rounded-md bg-[#FF0000]/10">
                     <img
-                      src={Calories}
+                      src="https://sportsee.s3.amazonaws.com/calories-icon.svg"
                       alt="Protein"
                       className="h-full w-full "
                     />
@@ -142,7 +138,7 @@ function Profile() {
                 <div className="flex h-32 w-64 flex-row items-center justify-start gap-[24px]  bg-[#FBFBFB] shadow-md ">
                   <div className="relative ml-[32px] h-[60px] w-[60px] rounded-md bg-[#4AB8FF]/10">
                     <img
-                      src={Protein}
+                      src="https://sportsee.s3.amazonaws.com/protein-icon.svg"
                       alt="Protein"
                       className="h-full w-full "
                     />
@@ -156,7 +152,11 @@ function Profile() {
                 </div>
                 <div className="flex h-32 w-64 flex-row items-center justify-start gap-[24px]  bg-[#FBFBFB] shadow-md ">
                   <div className="relative ml-[32px] h-[60px] w-[60px] rounded-md bg-[#FDCC0C]/10">
-                    <img src={Carbs} alt="Protein" className="h-full w-full " />
+                    <img
+                      src="https://sportsee.s3.amazonaws.com/carbs-icon.svg"
+                      alt="Protein"
+                      className="h-full w-full "
+                    />
                   </div>
                   <div className="text-sm">
                     <h1 className="text-xl font-bold">
@@ -168,7 +168,7 @@ function Profile() {
                 <div className="flex h-32 w-64 flex-row items-center justify-start gap-[24px]  bg-[#FBFBFB] shadow-md ">
                   <div className="relative ml-[32px] h-[60px] w-[60px] rounded-md bg-[#FDCC0C]/10">
                     <img
-                      src={Lipids}
+                      src="https://sportsee.s3.amazonaws.com/fat-icon.svg"
                       alt="Protein"
                       className="h-full w-full "
                     />
