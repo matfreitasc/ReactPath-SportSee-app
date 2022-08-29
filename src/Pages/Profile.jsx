@@ -33,7 +33,6 @@ function Profile() {
     data: [],
     kind: [],
   })
-
   useEffect(() => {
     const controller = new AbortController()
 

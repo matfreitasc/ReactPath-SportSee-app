@@ -107,7 +107,30 @@ function Home() {
 }
 
 Home.propTypes = {
+  /**
+   * User data
+   *
+   * @type {Object}
+   * @property {Object} userInfos User infos
+   *
+   */
   data: PropTypes.object,
+  /**
+   * User activity
+   * @type {Object}
+   * @property {Object} sessions User activity
+   * @property {Object} averageSession User average activity
+   * @property {Object} userPerformance User performance
+   * @property {Object} todayScore User today score
+   * @property {Object} keyData User key data
+   * @property {Object} userInfos User infos
+   * @property {Object} calorieCount User calorie count
+   * @property {Object} proteinCount User protein count
+   * @property {Object} carbohydrateCount User carbohydrate count
+   * @property {Object} lipidCount User lipid count
+   *
+   *
+   */
   userInfos: PropTypes.object,
   todayScore: PropTypes.object,
   keyData: PropTypes.object,

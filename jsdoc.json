@@ -1,19 +1,21 @@
 {
+  "tags": {
+    "allowUnknownTags": true
+  },
   "source": {
-    "include": ["src"],
-    "includePattern": ".js$",
-    "excludePattern": "(node_modules/|docs)"
+    "include": ["./src"]
   },
   "plugins": ["plugins/markdown"],
-  "templates": {
-    "cleverLinks": true,
-    "monospaceLinks": true
-  },
   "opts": {
+    "encoding": "utf8",
+    "destination": "docs/",
     "recurse": true,
-    "destination": "./docs/",
-    "template": "./custom-template",
-    "tutorials": "./tutorials",
-    "readme": "./readme/readme.md"
+    "verbose": true,
+    "template": "./node_modules/better-docs"
+  },
+  "templates": {
+    "better-docs": {
+      "name": "My React components"
+    }
   }
 }
