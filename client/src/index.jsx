@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom/client'
 import App from './components/App'
 import { ThemeProvider } from './context/ThemeContext'
 import './styles/index.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Route, Routes, HashRouter } from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <ThemeProvider>
         <Routes>
           <Route path="/*" element={<App />} />
         </Routes>
       </ThemeProvider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 )
