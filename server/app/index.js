@@ -1,12 +1,15 @@
-const express = require('express')
-const cors = require('cors')
+const express = require('express');
 
-const router = require('./routes')
+const cors = require('cors');
 
-const app = express()
-app.use(cors())
-const port = 3000
+const router = require('./routes');
 
-app.use(router)
+const app = express();
+app.use(cors());
+const port = process.env.port || 3000;
 
-app.listen(port, () => console.log(`Magic happens on port ${port}`))
+app.use(router);
+
+app.listen(port, () =>
+	console.log(`Magic happens on port ${port}`)
+);
