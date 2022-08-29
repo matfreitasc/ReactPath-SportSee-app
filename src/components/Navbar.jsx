@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Logo from '../assets/logo.svg'
 
-export default function Example() {
+export default function Navbar() {
   return (
     <nav className="z-20 h-auto w-full bg-black shadow-md shadow-black">
       <div className="flex items-center">
