@@ -1,4 +1,0 @@
-{
-	"appService.defaultWebAppToDeploy": "/subscriptions/2d2b192a-fc05-4316-af85-b9aacd1ed763/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/sportssee",
-	"appService.deploySubpath": "."
-}
