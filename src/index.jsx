@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './components/App'
 import { ThemeProvider } from './context/ThemeContext'
 import './styles/index.css'
-import { Route, Routes, HashRouter, BrowserRouter } from 'react-router-dom'
+import { Route, Routes, BrowserRouter } from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
