@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3000/user/'
+const baseUrl = 'https://sportsee.azurewebsites.net/user/'
 
 export default axios.create({
   baseURL: baseUrl,
