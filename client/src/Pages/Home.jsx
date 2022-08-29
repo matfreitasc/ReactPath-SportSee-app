@@ -13,7 +13,7 @@ import {
   defaultUserActivity,
   defaultAverageSession,
   defaultUserPerformance,
-} from '../api/Data'
+} from '../api/data'
 
 function Home() {
   const data = defaultUserData[0].data
