@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   BarChart,
   Bar,
@@ -118,6 +119,13 @@ function CustomTooltip({ payload, active }) {
     )
   }
   return null
+}
+DailyActiveChart.propTypes = {
+  sessions: PropTypes.array,
+}
+CustomTooltip.propTypes = {
+  payload: PropTypes.array,
+  active: PropTypes.bool,
 }
 
 export default DailyActiveChart
