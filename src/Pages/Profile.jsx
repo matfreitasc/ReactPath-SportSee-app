@@ -94,11 +94,11 @@ function Profile() {
       )}
       <div className="flex h-full flex-row">
         <Sidebar />
-        <div className="mx-auto mt-16 h-full ">
+        <div className="mt-8 h-full px-2 lg:mx-auto ">
           <div className=" max-h-[95%] w-full ">
             <section className="flex flex-col gap-6">
               <div className="flex flex-col gap-6">
-                <h1 className="text-5xl font-bold	">
+                <h1 className="font-bold md:text-3xl xl:text-5xl	">
                   Hello{' '}
                   <span className="text-[#FF0000]">{userInfos.firstName}</span>
                 </h1>
@@ -109,13 +109,13 @@ function Profile() {
             </section>
             <section className=" mt-14 flex h-full min-w-fit max-w-6xl flex-row  gap-5">
               <div className="grid h-full w-full grid-cols-3 content-between gap-[30px] align-middle ">
-                <div className="col-span-3  h-[340px] w-full  ">
+                <div className="col-span-3   ">
                   <DailyActiveChart sessions={sessions} />
                 </div>
                 <div className="col-span-1 ">
                   <AverageSessions averageSession={averageSession} />
                 </div>
-                <div className="col-span-1 rounded-xl bg-[#282D30] shadow-md">
+                <div className="col-span-1 ">
                   <RadarDisplay userPerformance={userPerformance} />
                 </div>
                 <div className="col-span-1 ">
@@ -123,7 +123,7 @@ function Profile() {
                 </div>
               </div>
               <div className="gap-auto flex h-[100%] flex-col justify-between gap-[40px]">
-                <div className="flex h-32 w-64 flex-row items-center justify-start gap-[24px]  bg-[#FBFBFB] shadow-md ">
+                <div className="flex h-[7.15rem] w-56 flex-row items-center justify-start gap-[24px] bg-[#FBFBFB] shadow-md  xl:h-32 xl:w-64 ">
                   <div className="relative ml-[32px] h-[60px] w-[60px] rounded-md bg-[#FF0000]/10">
                     <img
                       src="https://sportsee.s3.amazonaws.com/calories-icon.svg"
@@ -138,7 +138,7 @@ function Profile() {
                     <span className="text-[#74798C]">calories</span>
                   </div>
                 </div>
-                <div className="flex h-32 w-64 flex-row items-center justify-start gap-[24px]  bg-[#FBFBFB] shadow-md ">
+                <div className="flex h-[7.15rem] w-56 flex-row items-center justify-start gap-[24px] bg-[#FBFBFB] shadow-md  xl:h-32 xl:w-64 ">
                   <div className="relative ml-[32px] h-[60px] w-[60px] rounded-md bg-[#4AB8FF]/10">
                     <img
                       src="https://sportsee.s3.amazonaws.com/protein-icon.svg"
@@ -153,7 +153,7 @@ function Profile() {
                     <span className="text-[#74798C]">Proteins</span>
                   </div>
                 </div>
-                <div className="flex h-32 w-64 flex-row items-center justify-start gap-[24px]  bg-[#FBFBFB] shadow-md ">
+                <div className="flex h-[7.15rem] w-56 flex-row items-center justify-start gap-[24px] bg-[#FBFBFB] shadow-md  xl:h-32 xl:w-64 ">
                   <div className="relative ml-[32px] h-[60px] w-[60px] rounded-md bg-[#FDCC0C]/10">
                     <img
                       src="https://sportsee.s3.amazonaws.com/carbs-icon.svg"
@@ -168,7 +168,7 @@ function Profile() {
                     <span className="text-[#74798C]">Carbs</span>
                   </div>
                 </div>
-                <div className="flex h-32 w-64 flex-row items-center justify-start gap-[24px]  bg-[#FBFBFB] shadow-md ">
+                <div className="flex h-[7.15rem] w-56 flex-row items-center justify-start gap-[24px] bg-[#FBFBFB] shadow-md  xl:h-32 xl:w-64 ">
                   <div className="relative ml-[32px] h-[60px] w-[60px] rounded-md bg-[#FDCC0C]/10">
                     <img
                       src="https://sportsee.s3.amazonaws.com/fat-icon.svg"

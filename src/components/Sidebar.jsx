@@ -1,6 +1,6 @@
 function Sidebar() {
   return (
-    <section className="z-10 flex h-full w-28 flex-col flex-nowrap items-center justify-start gap-5 bg-black shadow-xl shadow-black">
+    <section className="z-10 flex h-screen w-20  flex-col flex-nowrap items-center justify-start gap-y-5 bg-black shadow-xl shadow-black lg:w-24">
       <span className="mt-[256px] h-16 w-16 rounded-md bg-white text-center  ">
         <div className="flex h-full w-full items-center justify-center ">
           <img

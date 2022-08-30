@@ -27,7 +27,7 @@ function Home() {
   return (
     <div className="flex h-full flex-row">
       <Sidebar />
-      <div className="mx-auto mt-16 h-full ">
+      <div className="mt-16 ml-10 h-full xl:mx-auto ">
         <div className=" max-h-[95%] w-full ">
           <section className="flex flex-col gap-6">
             <div className="flex flex-col gap-6">

@@ -4,7 +4,7 @@ import { Menu, Transition } from '@headlessui/react'
 
 export default function Navbar() {
   return (
-    <nav className="z-20 h-auto w-full bg-black shadow-md shadow-black">
+    <nav className="relative z-30 h-16 w-full bg-black shadow-md shadow-black">
       <div className="flex items-center">
         <img src={Logo} alt="SportSee" className=" ml-8 h-20 w-44" />
         <ul className="flex w-full justify-around text-xl font-normal text-white ">
