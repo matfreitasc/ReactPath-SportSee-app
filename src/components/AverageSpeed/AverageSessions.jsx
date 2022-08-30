@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import {
   LineChart,
   CartesianGrid,
@@ -7,7 +6,6 @@ import {
   Tooltip,
   Line,
   Rectangle,
-  ResponsiveContainer,
 } from 'recharts'
 
 function AverageSessions(props) {
@@ -29,60 +27,58 @@ function AverageSessions(props) {
   })
 
   return (
-    <div className="relative  h-52 w-52  rounded-2xl bg-[#FF0000] xl:h-[263px] xl:w-[263px]">
+    <div className="relative  h-[263px] w-[263px] rounded-2xl bg-[#FF0000]">
       <p className="absolute top-[34px] left-[29px] text-white ">
         Average speed of <br /> your sessions
       </p>
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          data={newData}
-          width={263}
-          height={263}
-          margin={{ top: 0, right: 0, left: 0, bottom: 10 }}
-        >
-          <defs>
-            <linearGradient id="colorGD" x1="0" y1="0" x2=".5" y2="0">
-              <stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.2} />
-              <stop offset="95%" stopColor="#FFFFFF" stopOpacity={1} />
-            </linearGradient>
-          </defs>
-          <CartesianGrid strokeDasharray="1" horizontal="" vertical="" />
-          <XAxis
-            dataKey="dayOfWeek"
-            tickLine={false}
-            axisLine={false}
-            tick={<CustomizedAxisTick />}
-            padding={{ left: 0, right: 0 }}
-          />
-          <YAxis
-            hide={true}
-            domain={['dataMin-20', 'dataMax+40']}
-            tickLine={false}
-            axisLine={false}
-          />
-          <Tooltip
-            content={<CustomTooltip />}
-            labelStyle={{ display: 'none' }}
-            cursor={<CustomCursor />}
-          />
+      <LineChart
+        data={newData}
+        width={263}
+        height={263}
+        margin={{ top: 0, right: 0, left: 0, bottom: 10 }}
+      >
+        <defs>
+          <linearGradient id="colorGD" x1="0" y1="0" x2=".5" y2="0">
+            <stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.2} />
+            <stop offset="95%" stopColor="#FFFFFF" stopOpacity={1} />
+          </linearGradient>
+        </defs>
+        <CartesianGrid strokeDasharray="1" horizontal="" vertical="" />
+        <XAxis
+          dataKey="dayOfWeek"
+          tickLine={false}
+          axisLine={false}
+          tick={<CustomizedAxisTick />}
+          padding={{ left: 0, right: 0 }}
+        />
+        <YAxis
+          hide={true}
+          domain={['dataMin-20', 'dataMax+40']}
+          tickLine={false}
+          axisLine={false}
+        />
+        <Tooltip
+          content={<CustomTooltip />}
+          labelStyle={{ display: 'none' }}
+          cursor={<CustomCursor />}
+        />
 
-          <Line
-            type="monotone"
-            dataKey="sessionLength"
-            stroke="url('#colorGD')"
-            strokeWidth={3}
-            unit="min"
-            dot={false}
-            activeDot={{
-              fill: 'white',
-              stroke: 'white',
-              strokeOpacity: 0.2,
-              strokeWidth: 15,
-              r: 5,
-            }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+        <Line
+          type="monotone"
+          dataKey="sessionLength"
+          stroke="url('#colorGD')"
+          strokeWidth={3}
+          unit="min"
+          dot={false}
+          activeDot={{
+            fill: 'white',
+            stroke: 'white',
+            strokeOpacity: 0.2,
+            strokeWidth: 15,
+            r: 5,
+          }}
+        />
+      </LineChart>
     </div>
   )
 }
@@ -126,23 +122,6 @@ const CustomizedAxisTick = (props) => {
       </text>
     </g>
   )
-}
-
-AverageSessions.propTypes = {
-  averageSession: PropTypes.array,
-}
-CustomTooltip.propTypes = {
-  payload: PropTypes.array,
-  active: PropTypes.bool,
-}
-CustomCursor.propTypes = {
-  points: PropTypes.array,
-  width: PropTypes.number,
-}
-CustomizedAxisTick.propTypes = {
-  x: PropTypes.number,
-  y: PropTypes.number,
-  payload: PropTypes.object,
 }
 
 export default AverageSessions

@@ -3,6 +3,10 @@ import RadarDisplay from '../components/Radar/RadarDisplay'
 import DoughnutChart from '../components/Doughnut/DoughnutChart'
 import DailyActiveChart from '../components/DailyActive/DailyActiveChart'
 import AverageSessions from '../components/AverageSpeed/AverageSessions'
+import Protein from '../assets/protein-icon.svg'
+import Calories from '../assets/calories-icon.svg'
+import Carbs from '../assets/carbs-icon.svg'
+import Lipids from '../assets/fat-icon.svg'
 
 import { useParams } from 'react-router-dom'
 import { Fragment, useEffect, useState } from 'react'
@@ -33,18 +37,15 @@ function Profile() {
     data: [],
     kind: [],
   })
-  useEffect(() => {
-    const controller = new AbortController()
 
+  useEffect(() => {
     const getUserData = async () => {
       setLoading(true)
       try {
         const response = await axios.get(`${id}`)
         const activeRespobse = await axios.get(`${id}/activity`)
         const avrageResponse = await axios.get(`${id}/average-sessions`)
-        const performanceResponse = await axios.get(`${id}/performance`, {
-          signal: controller.signal,
-        })
+        const performanceResponse = await axios.get(`${id}/performance`)
         setUserData(response.data.data)
         setAvrageSess(avrageResponse.data.data)
         setUserActivity(activeRespobse.data.data)
@@ -57,12 +58,12 @@ function Profile() {
     }
 
     getUserData()
-    return () => controller.abort()
   }, [id])
 
   const data = userData
   const userInfos = data.userInfos
   const keyData = data.keyData
+  console.log(data)
   const todayScore = data.todayScore || data.score
 
   const sessions = userActivity.sessions
@@ -72,7 +73,7 @@ function Profile() {
   return (
     <Fragment>
       {loading && (
-        <div className="absolute z-50 flex h-screen w-screen flex-col items-center justify-center bg-white text-center">
+        <div className="fixed z-50 flex h-screen w-screen flex-col items-center justify-center bg-white text-center">
           <svg className="... mr-3 h-20 w-20 animate-spin" viewBox="0 0 24 24">
             <svg
               fill="none"
@@ -94,11 +95,11 @@ function Profile() {
       )}
       <div className="flex h-full flex-row">
         <Sidebar />
-        <div className="mt-8 h-full px-2 lg:mx-auto ">
+        <div className="mx-auto mt-16 h-full ">
           <div className=" max-h-[95%] w-full ">
             <section className="flex flex-col gap-6">
               <div className="flex flex-col gap-6">
-                <h1 className="font-bold md:text-3xl xl:text-5xl	">
+                <h1 className="text-5xl font-bold	">
                   Hello{' '}
                   <span className="text-[#FF0000]">{userInfos.firstName}</span>
                 </h1>
@@ -109,13 +110,13 @@ function Profile() {
             </section>
             <section className=" mt-14 flex h-full min-w-fit max-w-6xl flex-row  gap-5">
               <div className="grid h-full w-full grid-cols-3 content-between gap-[30px] align-middle ">
-                <div className="col-span-3   ">
+                <div className="col-span-3  h-[340px] w-full  ">
                   <DailyActiveChart sessions={sessions} />
                 </div>
                 <div className="col-span-1 ">
                   <AverageSessions averageSession={averageSession} />
                 </div>
-                <div className="col-span-1 ">
+                <div className="col-span-1 rounded-xl bg-[#282D30] shadow-md">
                   <RadarDisplay userPerformance={userPerformance} />
                 </div>
                 <div className="col-span-1 ">
@@ -123,10 +124,10 @@ function Profile() {
                 </div>
               </div>
               <div className="gap-auto flex h-[100%] flex-col justify-between gap-[40px]">
-                <div className="flex h-[7.15rem] w-56 flex-row items-center justify-start gap-[24px] bg-[#FBFBFB] shadow-md  xl:h-32 xl:w-64 ">
+                <div className="flex h-32 w-64 flex-row items-center justify-start gap-[24px]  bg-[#FBFBFB] shadow-md ">
                   <div className="relative ml-[32px] h-[60px] w-[60px] rounded-md bg-[#FF0000]/10">
                     <img
-                      src="https://sportsee.s3.amazonaws.com/calories-icon.svg"
+                      src={Calories}
                       alt="Protein"
                       className="h-full w-full "
                     />
@@ -138,10 +139,10 @@ function Profile() {
                     <span className="text-[#74798C]">calories</span>
                   </div>
                 </div>
-                <div className="flex h-[7.15rem] w-56 flex-row items-center justify-start gap-[24px] bg-[#FBFBFB] shadow-md  xl:h-32 xl:w-64 ">
+                <div className="flex h-32 w-64 flex-row items-center justify-start gap-[24px]  bg-[#FBFBFB] shadow-md ">
                   <div className="relative ml-[32px] h-[60px] w-[60px] rounded-md bg-[#4AB8FF]/10">
                     <img
-                      src="https://sportsee.s3.amazonaws.com/protein-icon.svg"
+                      src={Protein}
                       alt="Protein"
                       className="h-full w-full "
                     />
@@ -153,13 +154,9 @@ function Profile() {
                     <span className="text-[#74798C]">Proteins</span>
                   </div>
                 </div>
-                <div className="flex h-[7.15rem] w-56 flex-row items-center justify-start gap-[24px] bg-[#FBFBFB] shadow-md  xl:h-32 xl:w-64 ">
+                <div className="flex h-32 w-64 flex-row items-center justify-start gap-[24px]  bg-[#FBFBFB] shadow-md ">
                   <div className="relative ml-[32px] h-[60px] w-[60px] rounded-md bg-[#FDCC0C]/10">
-                    <img
-                      src="https://sportsee.s3.amazonaws.com/carbs-icon.svg"
-                      alt="Protein"
-                      className="h-full w-full "
-                    />
+                    <img src={Carbs} alt="Protein" className="h-full w-full " />
                   </div>
                   <div className="text-sm">
                     <h1 className="text-xl font-bold">
@@ -168,10 +165,10 @@ function Profile() {
                     <span className="text-[#74798C]">Carbs</span>
                   </div>
                 </div>
-                <div className="flex h-[7.15rem] w-56 flex-row items-center justify-start gap-[24px] bg-[#FBFBFB] shadow-md  xl:h-32 xl:w-64 ">
+                <div className="flex h-32 w-64 flex-row items-center justify-start gap-[24px]  bg-[#FBFBFB] shadow-md ">
                   <div className="relative ml-[32px] h-[60px] w-[60px] rounded-md bg-[#FDCC0C]/10">
                     <img
-                      src="https://sportsee.s3.amazonaws.com/fat-icon.svg"
+                      src={Lipids}
                       alt="Protein"
                       className="h-full w-full "
                     />
@@ -191,22 +188,22 @@ function Profile() {
 }
 
 Profile.propTypes = {
-  id: PropTypes.string,
-  userInfos: PropTypes.object,
-  userActivity: PropTypes.object,
-  userPerformance: PropTypes.object,
-  keyData: PropTypes.object,
-  todayScore: PropTypes.object,
-  sessions: PropTypes.object,
-  averageSession: PropTypes.object,
-  loading: PropTypes.bool,
-  getUserInfos: PropTypes.func,
-  getUserActivity: PropTypes.func,
-  getUserPerformance: PropTypes.func,
-  getKeyData: PropTypes.func,
-  getTodayScore: PropTypes.func,
-  getSessions: PropTypes.func,
-  getAverageSession: PropTypes.func,
+  id: PropTypes.string.isRequired,
+  userInfos: PropTypes.object.isRequired,
+  userActivity: PropTypes.object.isRequired,
+  userPerformance: PropTypes.object.isRequired,
+  keyData: PropTypes.object.isRequired,
+  todayScore: PropTypes.object.isRequired,
+  sessions: PropTypes.object.isRequired,
+  averageSession: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+  getUserInfos: PropTypes.func.isRequired,
+  getUserActivity: PropTypes.func.isRequired,
+  getUserPerformance: PropTypes.func.isRequired,
+  getKeyData: PropTypes.func.isRequired,
+  getTodayScore: PropTypes.func.isRequired,
+  getSessions: PropTypes.func.isRequired,
+  getAverageSession: PropTypes.func.isRequired,
 }
 
 export default Profile

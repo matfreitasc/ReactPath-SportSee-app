@@ -7,7 +7,7 @@ import Protein from '../assets/protein-icon.svg'
 import Calories from '../assets/calories-icon.svg'
 import Carbs from '../assets/carbs-icon.svg'
 import Lipids from '../assets/fat-icon.svg'
-import PropTypes from 'prop-types'
+
 import {
   defaultUserData,
   defaultUserActivity,
@@ -27,7 +27,7 @@ function Home() {
   return (
     <div className="flex h-full flex-row">
       <Sidebar />
-      <div className="mt-16 ml-10 h-full xl:mx-auto ">
+      <div className="mx-auto mt-16 h-full ">
         <div className=" max-h-[95%] w-full ">
           <section className="flex flex-col gap-6">
             <div className="flex flex-col gap-6">
@@ -104,39 +104,6 @@ function Home() {
       </div>
     </div>
   )
-}
-
-Home.propTypes = {
-  /**
-   * User data
-   *
-   * @type {Object}
-   * @property {Object} userInfos User infos
-   *
-   */
-  data: PropTypes.object,
-  /**
-   * User activity
-   * @type {Object}
-   * @property {Object} sessions User activity
-   * @property {Object} averageSession User average activity
-   * @property {Object} userPerformance User performance
-   * @property {Object} todayScore User today score
-   * @property {Object} keyData User key data
-   * @property {Object} userInfos User infos
-   * @property {Object} calorieCount User calorie count
-   * @property {Object} proteinCount User protein count
-   * @property {Object} carbohydrateCount User carbohydrate count
-   * @property {Object} lipidCount User lipid count
-   *
-   *
-   */
-  userInfos: PropTypes.object,
-  todayScore: PropTypes.object,
-  keyData: PropTypes.object,
-  sessions: PropTypes.object,
-  averageSession: PropTypes.object,
-  userPerformance: PropTypes.object,
 }
 
 export default Home
