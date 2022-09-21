@@ -25,7 +25,7 @@ function DoughnutChart(props) {
           goal
         </p>
       </div>
-      <ResponsiveContainer className="hidden h-full w-full xl:block">
+      <ResponsiveContainer className="flipHorizontal hidden h-full w-full xl:block">
         <RadialBarChart
           data={score}
           innerRadius={80}

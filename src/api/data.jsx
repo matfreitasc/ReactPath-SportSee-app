@@ -1,9 +1,3 @@
-/**
- * @
- * @description This is a default data to display in the main page of the app
- * @type {Object}
- */
-
 export const defaultUserData = [
   {
     data: {

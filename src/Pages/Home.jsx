@@ -15,12 +15,6 @@ import {
   defaultUserPerformance,
 } from '../api/data'
 
-/**
- *
- * @name Home Page
- * @description This is the home page of the application, the data being display is a mock data
- */
-
 function Home() {
   const data = defaultUserData[0].data
   const userInfos = data.userInfos

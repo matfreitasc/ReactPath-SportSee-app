@@ -64,7 +64,6 @@ function Profile() {
         setLoading(false)
       }
     }
-
     getUserData()
     return () => controller.abort()
   }, [id])
@@ -209,13 +208,6 @@ Profile.propTypes = {
   sessions: PropTypes.object,
   averageSession: PropTypes.object,
   loading: PropTypes.bool,
-  getUserInfos: PropTypes.func,
-  getUserActivity: PropTypes.func,
-  getUserPerformance: PropTypes.func,
-  getKeyData: PropTypes.func,
-  getTodayScore: PropTypes.func,
-  getSessions: PropTypes.func,
-  getAverageSession: PropTypes.func,
 }
 
 export default Profile
