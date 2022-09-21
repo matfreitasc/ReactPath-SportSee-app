@@ -35,6 +35,15 @@ function Profile() {
   })
   useEffect(() => {
     const controller = new AbortController()
+    /**
+     * @async
+     * @function
+     * @name Profile Page getUserData async function
+     * @description Fetches the user data from the api asynchroniously
+     * @returns {Promise<void>}
+     * @throws {Error} If the request fails
+     *
+     */
 
     const getUserData = async () => {
       setLoading(true)

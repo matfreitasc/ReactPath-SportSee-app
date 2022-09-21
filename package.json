@@ -13,6 +13,7 @@
     "axios": "^0.27.2",
     "date-fns": "^2.29.2",
     "jsdoc-react": "^1.0.0",
+    "live-server": "^1.2.2",
     "parcel-bundler": "^1.12.5",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
