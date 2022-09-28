@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> api/axios.jsx</title>
+  <title> components/DailyActive/DailyActiveChart.jsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>api/axios.jsx</h1>
+                    <h1>components/DailyActive/DailyActiveChart.jsx</h1>
                 </header>
                 
 
@@ -89,23 +89,144 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import axios from 'axios'
-
-const baseUrl = 'https://sportsee.azurewebsites.net/user/'
+            <pre class="prettyprint source linenums"><code>import React from 'react'
+import PropTypes from 'prop-types'
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from 'recharts'
 
 /**
- * Created a axios instance with the base url to support easy change of the api url
- * creating a axios instance makes it easier to use the same configuration for all requests
- * @category API
- * @type {axios}
+ * @componet DailyActiveChart
+ * @param {string} props
+ * @returns todays score with doughnut chart and percentage of goal achieved
+ * @example
+ * &lt;DailyActiveChart todayScore={0.5} />
  */
+function DailyActiveChart(props) {
+  const data = props.sessions
+  const modifiedData = data.map((item, index) => {
+    const newItem = { ...item }
 
-export default axios.create({
-  baseURL: baseUrl,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-})
+    newItem.index = index
+    return newItem
+  })
+
+  return (
+    &lt;div className="relative h-[340px] w-full rounded-xl bg-[#FBFBFB] shadow-md">
+      &lt;h1 className="color-[#20253A] absolute left-[32px] top-[24px] text-base font-medium">
+        Daily Active
+      &lt;/h1>
+      &lt;ResponsiveContainer width="95%" height="100%">
+        &lt;BarChart
+          data={modifiedData}
+          margin={{
+            top: 80,
+            right: 0,
+            left: 0,
+            bottom: 2,
+          }}
+          barGap={5}
+          barSize={10}
+        >
+          &lt;CartesianGrid vertical={false} strokeDasharray="4" />
+          &lt;Legend
+            verticalAlign="top"
+            height={36}
+            align="right"
+            iconType="circle"
+            iconSize={12}
+            wrapperStyle={{
+              top: '24px',
+              right: '10px',
+            }}
+            payload={[
+              {
+                value: 'Weight (kg)',
+                id: 'Kilogram',
+                type: 'cicle',
+                color: '#282D30',
+              },
+              {
+                value: 'Burned calories (kCal)',
+                id: 'Calories',
+                type: 'circle',
+                color: '#FF0000',
+              },
+            ]}
+          />
+
+          &lt;YAxis yAxisId="left" orientation="left" stroke="#FBFBFB" />
+          &lt;YAxis
+            yAxisId="right"
+            orientation="right"
+            stroke="#9B9EAC"
+            tickCount={3}
+            tickLine={false}
+            axisLine={false}
+            tickMargin={20}
+          />
+
+          &lt;XAxis
+            dataKey="index"
+            axisLine={false}
+            tickLine={false}
+            tickMargin={5}
+            stroke="#9B9EAC"
+          />
+          &lt;Tooltip
+            content={&lt;CustomTooltip />}
+            labelStyle={{ display: 'none' }}
+          />
+          &lt;Bar
+            yAxisId="left"
+            dataKey="kilogram"
+            fill="#282D30"
+            radius={[5, 5, 0, 0]}
+          />
+          &lt;Bar
+            yAxisId="right"
+            dataKey="calories"
+            fill="#E60000"
+            radius={[5, 5, 0, 0]}
+          />
+        &lt;/BarChart>
+      &lt;/ResponsiveContainer>
+    &lt;/div>
+  )
+}
+
+function CustomTooltip({ payload, active }) {
+  if (active) {
+    return (
+      &lt;div
+        className="m-o relative -top-12 flex h-[60px] flex-col items-center
+      justify-around rounded-sm bg-primary-color p-2 text-[10px] text-white
+      "
+      >
+        &lt;p>{payload[0].value} Kg&lt;/p>
+
+        &lt;p>{payload[1].value} kCal&lt;/p>
+      &lt;/div>
+    )
+  }
+  return null
+}
+DailyActiveChart.propTypes = {
+  sessions: PropTypes.array,
+}
+CustomTooltip.propTypes = {
+  payload: PropTypes.array,
+  active: PropTypes.bool,
+}
+
+export default DailyActiveChart
 </code></pre>
         </article>
     </section>

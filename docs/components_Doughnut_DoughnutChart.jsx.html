@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> api/axios.jsx</title>
+  <title> components/Doughnut/DoughnutChart.jsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>api/axios.jsx</h1>
+                    <h1>components/Doughnut/DoughnutChart.jsx</h1>
                 </header>
                 
 
@@ -89,23 +89,99 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import axios from 'axios'
-
-const baseUrl = 'https://sportsee.azurewebsites.net/user/'
-
+            <pre class="prettyprint source linenums"><code>import React from 'react'
+import {
+  RadialBarChart,
+  RadialBar,
+  PolarAngleAxis,
+  ResponsiveContainer,
+} from 'recharts'
+import PropTypes from 'prop-types'
 /**
- * Created a axios instance with the base url to support easy change of the api url
- * creating a axios instance makes it easier to use the same configuration for all requests
- * @category API
- * @type {axios}
+ * @componet DoughnutChart
+ * @param {string} props
+ * @description todays score with doughnut chart and percentage of goal achieved
+ * @example
+ * &lt;DoughnutChart todayScore={0.5} />
  */
 
-export default axios.create({
-  baseURL: baseUrl,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-})
+function DoughnutChart(props) {
+  const score = [{ value: props.todayScore * 100, fill: '#FF0000' }]
+
+  return (
+    &lt;div className="relative  flex h-52 w-52 content-center  items-center justify-center rounded-xl bg-[#FBFBFB] shadow-md xl:h-[263px] xl:w-[263px] ">
+      &lt;h2 className="absolute text-sm font-medium lg:top-[24px] lg:left-[30px]">
+        Score
+      &lt;/h2>
+      &lt;div className="absolute flex h-[50%] w-[50%]  flex-col place-items-center justify-center rounded-full  bg-white text-center xl:h-[160px] xl:w-[160px] ">
+        &lt;span className="text-[24px] font-bold text-[#282D30] xl:text-[26px]">
+          {score[0].value}%
+        &lt;/span>
+        &lt;p className="text-xs font-medium text-[#74798C] xl:text-base">
+          of your
+          &lt;br />
+          goal
+        &lt;/p>
+      &lt;/div>
+      &lt;ResponsiveContainer className="flipHorizontal hidden h-full w-full xl:block">
+        &lt;RadialBarChart
+          data={score}
+          innerRadius={80}
+          outerRadius={100}
+          barSize={10}
+          background={{ fill: 'white' }}
+          startAngle={90}
+          deprecated
+          endAngle={450}
+        >
+          &lt;PolarAngleAxis
+            type="number"
+            domain={[0, 100]}
+            angleAxisId={0}
+            tick={false}
+          />
+          &lt;RadialBar
+            dataKey="value"
+            cornerRadius={10}
+            background={{ fill: '#fbfbfb' }}
+            clockwise
+          />
+        &lt;/RadialBarChart>
+      &lt;/ResponsiveContainer>
+      &lt;ResponsiveContainer className="block h-full w-full xl:hidden">
+        &lt;RadialBarChart
+          data={score}
+          innerRadius={80}
+          outerRadius={60}
+          barSize={10}
+          background={{ fill: 'white' }}
+          startAngle={90}
+          deprecated
+          endAngle={450}
+        >
+          &lt;PolarAngleAxis
+            type="number"
+            domain={[0, 100]}
+            angleAxisId={0}
+            tick={false}
+          />
+          &lt;RadialBar
+            dataKey="value"
+            cornerRadius={10}
+            background={{ fill: '#fbfbfb' }}
+            clockwise
+          />
+        &lt;/RadialBarChart>
+      &lt;/ResponsiveContainer>
+    &lt;/div>
+  )
+}
+
+DoughnutChart.propTypes = {
+  todayScore: PropTypes.number,
+}
+
+export default DoughnutChart
 </code></pre>
         </article>
     </section>

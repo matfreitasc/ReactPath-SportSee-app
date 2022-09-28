@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> api/axios.jsx</title>
+  <title> components/AverageSpeed/AverageSessions.jsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>api/axios.jsx</h1>
+                    <h1>components/AverageSpeed/AverageSessions.jsx</h1>
                 </header>
                 
 
@@ -89,23 +89,163 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import axios from 'axios'
-
-const baseUrl = 'https://sportsee.azurewebsites.net/user/'
+            <pre class="prettyprint source linenums"><code>import PropTypes from 'prop-types'
+import {
+  LineChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Line,
+  Rectangle,
+  ResponsiveContainer,
+} from 'recharts'
 
 /**
- * Created a axios instance with the base url to support easy change of the api url
- * creating a axios instance makes it easier to use the same configuration for all requests
- * @category API
- * @type {axios}
+ * @component AverageSessions
+ * @param {Object} props
+ * @param {Array} props.averageSession
+ * @returns {JSX.Element}
+ * @example
+ * &lt;AverageSessions averageSession={averageSession} />
  */
 
-export default axios.create({
-  baseURL: baseUrl,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-})
+function AverageSessions(props) {
+  const data = props.averageSession
+
+  const weekday = new Array(7)
+  weekday[1] = 'M'
+  weekday[2] = 'T'
+  weekday[3] = 'W'
+  weekday[4] = 'T'
+  weekday[5] = 'F'
+  weekday[6] = 'S'
+  weekday[7] = 'S'
+
+  const newData = data.map((item) => {
+    const newItem = { ...item }
+    newItem.dayOfWeek = weekday[item.day]
+    return newItem
+  })
+
+  return (
+    &lt;div className="relative  h-52 w-52  rounded-2xl bg-[#FF0000] xl:h-[263px] xl:w-[263px]">
+      &lt;p className="absolute top-[34px] left-[29px] text-white ">
+        Average speed of &lt;br /> your sessions
+      &lt;/p>
+      &lt;ResponsiveContainer width="100%" height="100%">
+        &lt;LineChart
+          data={newData}
+          width={263}
+          height={263}
+          margin={{ top: 0, right: 0, left: 0, bottom: 10 }}
+        >
+          &lt;defs>
+            &lt;linearGradient id="colorGD" x1="0" y1="0" x2=".5" y2="0">
+              &lt;stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.2} />
+              &lt;stop offset="95%" stopColor="#FFFFFF" stopOpacity={1} />
+            &lt;/linearGradient>
+          &lt;/defs>
+          &lt;CartesianGrid strokeDasharray="1" horizontal="" vertical="" />
+          &lt;XAxis
+            dataKey="dayOfWeek"
+            tickLine={false}
+            axisLine={false}
+            tick={&lt;CustomizedAxisTick />}
+            padding={{ left: 0, right: 0 }}
+          />
+          &lt;YAxis
+            hide={true}
+            domain={['dataMin-20', 'dataMax+40']}
+            tickLine={false}
+            axisLine={false}
+          />
+          &lt;Tooltip
+            content={&lt;CustomTooltip />}
+            labelStyle={{ display: 'none' }}
+            cursor={&lt;CustomCursor />}
+          />
+
+          &lt;Line
+            type="monotone"
+            dataKey="sessionLength"
+            stroke="url('#colorGD')"
+            strokeWidth={3}
+            unit="min"
+            dot={false}
+            activeDot={{
+              fill: 'white',
+              stroke: 'white',
+              strokeOpacity: 0.2,
+              strokeWidth: 15,
+              r: 5,
+            }}
+          />
+        &lt;/LineChart>
+      &lt;/ResponsiveContainer>
+    &lt;/div>
+  )
+}
+function CustomTooltip({ payload, active }) {
+  if (active) {
+    return (
+      &lt;div
+        className="m-o relative -top-10 flex h-5 w-8 
+        flex-col
+      items-center justify-center rounded-sm bg-white text-[8px]
+      "
+      >
+        {payload[0].value} {payload[0].unit}
+      &lt;/div>
+    )
+  }
+  return null
+}
+const CustomCursor = (props) => {
+  const { points, width } = props
+  const { x, y } = points[0]
+  return (
+    &lt;Rectangle
+      fill="rgba(0, 0, 0, 0.05)"
+      x={x}
+      y={y}
+      width={width - x}
+      height={263}
+      radius={20}
+    />
+  )
+}
+
+const CustomizedAxisTick = (props) => {
+  const { x, y, payload } = props
+
+  return (
+    &lt;g transform={`translate(${x},${y})`}>
+      &lt;text x={-15} y={15} dy={0} textAnchor="end" fill="white">
+        {payload.value}
+      &lt;/text>
+    &lt;/g>
+  )
+}
+
+AverageSessions.propTypes = {
+  averageSession: PropTypes.array,
+}
+CustomTooltip.propTypes = {
+  payload: PropTypes.array,
+  active: PropTypes.bool,
+}
+CustomCursor.propTypes = {
+  points: PropTypes.array,
+  width: PropTypes.number,
+}
+CustomizedAxisTick.propTypes = {
+  x: PropTypes.number,
+  y: PropTypes.number,
+  payload: PropTypes.object,
+}
+
+export default AverageSessions
 </code></pre>
         </article>
     </section>
