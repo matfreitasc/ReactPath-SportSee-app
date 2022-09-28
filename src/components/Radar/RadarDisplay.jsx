@@ -1,3 +1,4 @@
+// @ts-check
 import React from 'react'
 import Proptypes from 'prop-types'
 import './radar.css'
@@ -9,7 +10,20 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
+/**
+ * @component RadarDisplay
+ * @returns Todays score with doughnut chart and percentage of goal achieved
+ * @example
+ * <RadarDisplay userPerformance={userPerformance} />
+ */
+
 function RadarDisplay(props) {
+  /**
+   * A user performance object
+   * @typedef {Object} UserPerformance
+   * @property {string} kind
+   * @property {number} value
+   */
   const kind = props.userPerformance.kind
   const PropsData = props.userPerformance
 
@@ -18,6 +32,10 @@ function RadarDisplay(props) {
     kind: PropsData.kind,
   }
 
+  /**
+   * @typedef {Object} newDataArray
+   * @description maps the kind and value of the user performance object to a new object with the correct keys
+   */
   const newDataArray = newData.value.map((item) => {
     return {
       value: item.value,

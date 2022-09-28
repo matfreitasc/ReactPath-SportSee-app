@@ -6,6 +6,13 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import PropTypes from 'prop-types'
+/**
+ * @componet DoughnutChart
+ * @param {string} props
+ * @description todays score with doughnut chart and percentage of goal achieved
+ * @example
+ * <DoughnutChart todayScore={0.5} />
+ */
 
 function DoughnutChart(props) {
   const score = [{ value: props.todayScore * 100, fill: '#FF0000' }]

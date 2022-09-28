@@ -10,6 +10,15 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
+/**
+ * @component AverageSessions
+ * @param {Object} props
+ * @param {Array} props.averageSession
+ * @returns {JSX.Element}
+ * @example
+ * <AverageSessions averageSession={averageSession} />
+ */
+
 function AverageSessions(props) {
   const data = props.averageSession
 

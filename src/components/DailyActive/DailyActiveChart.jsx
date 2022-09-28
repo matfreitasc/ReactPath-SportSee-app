@@ -11,6 +11,13 @@ import {
   Legend,
 } from 'recharts'
 
+/**
+ * @componet DailyActiveChart
+ * @param {string} props
+ * @returns todays score with doughnut chart and percentage of goal achieved
+ * @example
+ * <DailyActiveChart todayScore={0.5} />
+ */
 function DailyActiveChart(props) {
   const data = props.sessions
   const modifiedData = data.map((item, index) => {
