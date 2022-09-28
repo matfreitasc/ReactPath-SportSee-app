@@ -32,7 +32,11 @@ function DoughnutChart(props) {
           goal
         </p>
       </div>
-      <ResponsiveContainer className="flipHorizontal hidden h-full w-full xl:block">
+      <ResponsiveContainer
+        className="flipHorizontal hidden h-full w-full xl:block"
+        width="100%"
+        height="100%"
+      >
         <RadialBarChart
           data={score}
           innerRadius={80}
@@ -87,7 +91,7 @@ function DoughnutChart(props) {
 }
 
 DoughnutChart.propTypes = {
-  todayScore: PropTypes.number,
+  todayScore: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
 }
 
 export default DoughnutChart

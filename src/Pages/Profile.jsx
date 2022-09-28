@@ -9,11 +9,14 @@ import { Fragment, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import axios from '../api/axios'
+import ErrorModal from '../components/modal/ErrorModal'
 
 function Profile() {
   const { id } = useParams()
 
   const [loading, setLoading] = useState(true)
+
+  const [Error, setError] = useState(false)
 
   const [userData, setUserData] = useState({
     userInfos: {
@@ -59,6 +62,7 @@ function Profile() {
         setGetPerformance(performanceResponse.data.data)
       } catch (error) {
         console.log(error)
+        setError(true)
       } finally {
         setLoading(false)
       }
@@ -97,6 +101,11 @@ function Profile() {
             </svg>
           </svg>
           Loading...
+        </div>
+      )}
+      {Error && (
+        <div className="absolute z-50 flex h-screen w-screen flex-col items-center justify-center bg-white text-center">
+          <ErrorModal />
         </div>
       )}
       <div className="flex h-screen flex-row">
