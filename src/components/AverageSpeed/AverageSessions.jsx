@@ -12,6 +12,7 @@ import {
 
 /**
  * @component AverageSessions
+ * @description Average Session, takes the average time of the session and converts into graphic that displays each day of the week dynamicaly
  * @param {Object} props
  * @param {Array} props.averageSession
  * @returns {JSX.Element}
@@ -95,6 +96,17 @@ function AverageSessions(props) {
     </div>
   )
 }
+
+/**
+ * @component CustomTooltip
+ * @description Custom Tooltip for the Average Session component, it displays the average time of the session
+ * @param {Object} props
+ * @param {Array} props.payload
+ * @param {Boolean} props.active
+ * @returns {JSX.Element}
+ * @example
+ * <CustomTooltip payload={payload} active={active} />
+ */
 function CustomTooltip({ payload, active }) {
   if (active) {
     return (
@@ -110,6 +122,16 @@ function CustomTooltip({ payload, active }) {
   }
   return null
 }
+/**
+ * @component CustomCursor
+ * @description Custom Cursor, it adds the rectangle that follows the cursor with a background color black and opacity 0.05
+ * @param {Object} props
+ * @param {Array} props.points
+ * @param {Number} props.width
+ * @returns {JSX.Element}
+ * @example
+ * <CustomCursor points={points} width={width} />
+ */
 const CustomCursor = (props) => {
   const { points, width } = props
   const { x, y } = points[0]

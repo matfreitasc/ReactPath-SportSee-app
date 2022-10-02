@@ -72,7 +72,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#AverageSessions">AverageSessions</a></li><li><a href="global.html#DailyActiveChart">DailyActiveChart</a></li><li><a href="global.html#DoughnutChart">DoughnutChart</a></li><li><a href="global.html#ProfilePagegetUserDataasyncfunction">Profile Page getUserData async function</a></li><li><a href="global.html#RadarDisplay">RadarDisplay</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#AverageSessions">AverageSessions</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActiveChart">DailyActiveChart</a></li><li><a href="global.html#DoughnutChart">DoughnutChart</a></li><li><a href="global.html#ProfilePagegetUserDataasyncfunction">Profile Page getUserData async function</a></li><li><a href="global.html#RadarDisplay">RadarDisplay</a></li></ul></div>
                 
             </nav>
         </div>
@@ -201,6 +201,14 @@ function DailyActiveChart(props) {
     &lt;/div>
   )
 }
+
+/**
+ * @componet CustomTooltip
+ * @description custom tooltip for the Daily Active chart, it added the values of the chart to the tooltip
+ * @param {string} props
+ * @returns tooltip for the chart
+ *
+ */
 
 function CustomTooltip({ payload, active }) {
   if (active) {

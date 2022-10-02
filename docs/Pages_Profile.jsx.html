@@ -72,7 +72,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#AverageSessions">AverageSessions</a></li><li><a href="global.html#DailyActiveChart">DailyActiveChart</a></li><li><a href="global.html#DoughnutChart">DoughnutChart</a></li><li><a href="global.html#ProfilePagegetUserDataasyncfunction">Profile Page getUserData async function</a></li><li><a href="global.html#RadarDisplay">RadarDisplay</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#AverageSessions">AverageSessions</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActiveChart">DailyActiveChart</a></li><li><a href="global.html#DoughnutChart">DoughnutChart</a></li><li><a href="global.html#ProfilePagegetUserDataasyncfunction">Profile Page getUserData async function</a></li><li><a href="global.html#RadarDisplay">RadarDisplay</a></li></ul></div>
                 
             </nav>
         </div>
@@ -100,11 +100,14 @@ import { Fragment, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import axios from '../api/axios'
+import ErrorModal from '../components/modal/ErrorModal'
 
 function Profile() {
   const { id } = useParams()
 
   const [loading, setLoading] = useState(true)
+
+  const [Error, setError] = useState(false)
 
   const [userData, setUserData] = useState({
     userInfos: {
@@ -150,6 +153,7 @@ function Profile() {
         setGetPerformance(performanceResponse.data.data)
       } catch (error) {
         console.log(error)
+        setError(true)
       } finally {
         setLoading(false)
       }
@@ -188,6 +192,11 @@ function Profile() {
             &lt;/svg>
           &lt;/svg>
           Loading...
+        &lt;/div>
+      )}
+      {Error &amp;&amp; (
+        &lt;div className="absolute z-50 flex h-screen w-screen flex-col items-center justify-center bg-white text-center">
+          &lt;ErrorModal />
         &lt;/div>
       )}
       &lt;div className="flex h-screen flex-row">

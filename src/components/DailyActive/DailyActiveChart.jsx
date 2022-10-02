@@ -111,6 +111,14 @@ function DailyActiveChart(props) {
   )
 }
 
+/**
+ * @componet CustomTooltip
+ * @description custom tooltip for the Daily Active chart, it added the values of the chart to the tooltip
+ * @param {string} props
+ * @returns tooltip for the chart
+ *
+ */
+
 function CustomTooltip({ payload, active }) {
   if (active) {
     return (

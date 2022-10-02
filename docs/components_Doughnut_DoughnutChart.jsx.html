@@ -72,7 +72,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#AverageSessions">AverageSessions</a></li><li><a href="global.html#DailyActiveChart">DailyActiveChart</a></li><li><a href="global.html#DoughnutChart">DoughnutChart</a></li><li><a href="global.html#ProfilePagegetUserDataasyncfunction">Profile Page getUserData async function</a></li><li><a href="global.html#RadarDisplay">RadarDisplay</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#AverageSessions">AverageSessions</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActiveChart">DailyActiveChart</a></li><li><a href="global.html#DoughnutChart">DoughnutChart</a></li><li><a href="global.html#ProfilePagegetUserDataasyncfunction">Profile Page getUserData async function</a></li><li><a href="global.html#RadarDisplay">RadarDisplay</a></li></ul></div>
                 
             </nav>
         </div>
@@ -123,7 +123,11 @@ function DoughnutChart(props) {
           goal
         &lt;/p>
       &lt;/div>
-      &lt;ResponsiveContainer className="flipHorizontal hidden h-full w-full xl:block">
+      &lt;ResponsiveContainer
+        className="flipHorizontal hidden h-full w-full xl:block"
+        width="100%"
+        height="100%"
+      >
         &lt;RadialBarChart
           data={score}
           innerRadius={80}
@@ -178,7 +182,7 @@ function DoughnutChart(props) {
 }
 
 DoughnutChart.propTypes = {
-  todayScore: PropTypes.number,
+  todayScore: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
 }
 
 export default DoughnutChart
