@@ -122,7 +122,17 @@ function AverageSessions(props) {
   weekday[5] = 'F'
   weekday[6] = 'S'
   weekday[7] = 'S'
-
+  /**
+   * @typedef {Object} newData
+   * @description Maps the data and converts the day of the week into a string of the first letter of the day of the week
+   * @param {Object} item
+   * @param {number} item.day
+   * @param {number} item.sessionLength
+   * @returns {Object} newItem
+   * @returns {string} newItem.dayOfWeek
+   * @returns {number} newItem.sessionLength
+   *
+   */
   const newData = data.map((item) => {
     const newItem = { ...item }
     newItem.dayOfWeek = weekday[item.day]

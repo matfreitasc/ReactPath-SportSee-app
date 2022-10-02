@@ -104,10 +104,9 @@ import {
 /**
  * @component RadarDisplay
  * @returns Todays score with doughnut chart and percentage of goal achieved
- * @example
- * &lt;RadarDisplay userPerformance={userPerformance} />
+ * @example &lt;RadarDisplay userPerformance={userPerformance} />
+ * @param {{ userPerformance: { kind: any; }; }} props
  */
-
 function RadarDisplay(props) {
   /**
    * A user performance object
@@ -119,6 +118,7 @@ function RadarDisplay(props) {
   const PropsData = props.userPerformance
 
   const newData = {
+    // @ts-ignore
     value: PropsData.data,
     kind: PropsData.kind,
   }
@@ -127,12 +127,14 @@ function RadarDisplay(props) {
    * @typedef {Object} newDataArray
    * @description maps the kind and value of the user performance object to a new object with the correct keys
    */
-  const newDataArray = newData.value.map((item) => {
-    return {
-      value: item.value,
-      kind: kind[item.kind],
+  const newDataArray = newData.value.map(
+    (/** @type {{ value: any; kind: string | number; }} */ item) => {
+      return {
+        value: item.value,
+        kind: kind[item.kind],
+      }
     }
-  })
+  )
 
   const data = newDataArray
 
