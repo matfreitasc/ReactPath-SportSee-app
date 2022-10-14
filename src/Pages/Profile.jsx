@@ -61,7 +61,6 @@ function Profile() {
         setUserActivity(activeRespobse.data.data)
         setGetPerformance(performanceResponse.data.data)
       } catch (error) {
-        console.log(error)
         setError(true)
       } finally {
         setLoading(false)
