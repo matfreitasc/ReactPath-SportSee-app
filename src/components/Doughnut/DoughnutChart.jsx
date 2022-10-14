@@ -61,7 +61,13 @@ function DoughnutChart(props) {
           />
         </RadialBarChart>
       </ResponsiveContainer>
-      <ResponsiveContainer className="block h-full w-full xl:hidden">
+      <ResponsiveContainer
+        className="block h-full w-full xl:hidden"
+        width="100%"
+        height="100%"
+        minHeight={undefined}
+        minWidth={undefined}
+      >
         <RadialBarChart
           data={score}
           innerRadius={80}

@@ -59,6 +59,8 @@ function RadarDisplay(props) {
         className="hidden xl:block"
         width="100%"
         height="100%"
+        minHeight={undefined}
+        minWidth={undefined}
       >
         <RadarChart
           data={data}
@@ -91,6 +93,8 @@ function RadarDisplay(props) {
         className="block h-full w-full xl:hidden"
         width="100%"
         height="100%"
+        minHeight={undefined}
+        minWidth={undefined}
       >
         <RadarChart
           data={data}

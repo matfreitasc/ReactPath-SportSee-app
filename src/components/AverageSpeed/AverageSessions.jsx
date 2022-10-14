@@ -53,7 +53,12 @@ function AverageSessions(props) {
       <p className="absolute top-[34px] left-[29px] text-white ">
         Average speed of <br /> your sessions
       </p>
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer
+        width="100%"
+        height="100%"
+        minHeight={undefined}
+        minWidth={undefined}
+      >
         <LineChart
           data={newData}
           width={263}
