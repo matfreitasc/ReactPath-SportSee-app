@@ -58,7 +58,7 @@ function RadarDisplay(props) {
       <ResponsiveContainer
         className="hidden xl:block"
         width="100%"
-        height={800}
+        height="100%"
       >
         <RadarChart
           data={data}
